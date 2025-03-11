@@ -1,0 +1,32 @@
+/* styles/typography.css */
+
+.main-heading {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-7   font-bold text-blue-100  mb-1 sm:mb-2 md:mb-3 lg:mb-4;
+}
+
+.subheading {
+  @apply text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-title mb-1 sm:mb-2 md:mb-3 lg:mb-4;
+}
+.subheading-white {
+  @apply text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white ;
+}
+
+.paragraph {
+  @apply text-base sm:text-base md:text-lg lg:text-xl text-gray-800 mb-1 sm:mb-2 md:mb-3 lg:mb-4;
+}
+.paragraph-white {
+  @apply text-base sm:text-base md:text-lg lg:text-xl text-gray-100 mb-1 sm:mb-2 md:mb-3 lg:mb-4;
+}
+
+.tagline {
+  @apply text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 ;
+}
+.nav-link {
+  @apply text-xl sm:text-lg md:text-lg lg:text-xl  ;
+}
+strong {
+  @apply bg-blue-100 px-1 rounded;
+}
+hr{
+  @apply bg-black w-full h-1  my-4 bg-opacity-50;
+}
