@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { BsCalendar2Date } from 'react-icons/bs';
 import Link from 'next/link';
 import AuroraBackgroundDemo from '../auroraBackground/AuroraDemo';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 // Skeleton Loading Component (unchanged)
 const BlogCardSkeleton = () => {
@@ -24,8 +25,74 @@ const BlogCardSkeleton = () => {
   );
 };
 
-// Blog Card Component (slightly modified to show tags)
+// Blog Card Component (unchanged)
 const BlogCard = ({ post }) => {
+  // Function to handle premium post click - opening WhatsApp
+  const handlePremiumClick = (e) => {
+    e.preventDefault(); // Prevent default navigation
+    
+    // WhatsApp message text - customize as needed
+    const message = `Hello! I'm interested in purchasing the premium blog post: "${post.title}" (ID: ${post.id})`;
+    
+    // Create WhatsApp URL with encoded message
+    const whatsappURL = `https://wa.me/+918086229572?text=${encodeURIComponent(message)}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappURL, '_blank');
+  };
+
+  // For premium posts, use a Link but with custom onClick handler
+  if (post.isPremium) {
+    return (
+      <div 
+        className="bg-white relative p-4 shadow-lg rounded-2xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105"
+       
+      >
+        {/* Premium Badge */}
+        <div className="absolute top-5 right-5 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10 shadow-md">
+          PREMIUM
+        </div>
+        
+        <div className="relative h-72 w-full">
+          <Image
+            src={post.image}
+            alt={post.title}
+            layout="fill"
+            objectFit="cover"
+            className="w-full h-full rounded-2xl"
+          />
+          
+          {/* Purchase Button */}
+          <div className="absolute left-5 bottom-5 z-10">
+            <button 
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-colors duration-200"
+              onClick={(e) => {
+                e.stopPropagation(); // Stop event from bubbling up to parent
+                handlePremiumClick(e);
+              }}
+            >
+              Purchase
+            </button>
+          </div>
+        </div>
+        
+        <div className="py-2">
+          <p className="text-gray-600 flex gap-2 text-xs">
+            <BsCalendar2Date className="text-black" />
+            {post.author} 
+          </p>
+          <h3 className="mt-1 text-lg font-semibold text-title line-clamp-2">
+            {post.title}
+          </h3>
+          <p className="mt-3 text-gray-700 text-xs line-clamp-3">
+            {post.excerpt}
+          </p>
+        </div>
+      </div>
+    );
+  }
+  
+  // For regular posts, use Link for navigation to the blog post page
   return (
     <Link href={`/blog/${post.id}`} passHref>
       <div className="bg-white relative p-4 shadow-lg rounded-2xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105">
@@ -38,8 +105,7 @@ const BlogCard = ({ post }) => {
             className="w-full h-full rounded-2xl"
           />
         </div>
-        <div className=" py-2">
-          
+        <div className="py-2">
           <p className="text-gray-600 flex gap-2 text-xs">
             <BsCalendar2Date className="text-black" />
             {post.author} 
@@ -53,6 +119,78 @@ const BlogCard = ({ post }) => {
         </div>
       </div>
     </Link>
+  );
+};
+// Pagination Component (new)
+const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+  // Generate page numbers to display
+  const getPageNumbers = () => {
+    const pages = [];
+    // Always show first page
+    pages.push(1);
+    
+    // Show pages around current page
+    for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
+      pages.push(i);
+    }
+    
+    // Always show last page if there's more than one page
+    if (totalPages > 1) pages.push(totalPages);
+    
+    // Add ellipsis where needed
+    return pages.reduce((result, page, index, array) => {
+      if (index > 0 && page - array[index - 1] > 1) {
+        result.push('...');
+      }
+      result.push(page);
+      return result;
+    }, []);
+  };
+
+  return (
+    <div className="flex justify-center items-center space-x-2 mt-8">
+      {/* Previous button */}
+      <button
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className={`px-3 py-1 rounded-md flex items-center ${
+          currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'
+        }`}
+      >
+        <FaChevronLeft className="mr-1" /> Prev
+      </button>
+      
+      {/* Page numbers */}
+      {getPageNumbers().map((page, index) => (
+        <React.Fragment key={index}>
+          {page === '...' ? (
+            <span className="px-3 py-1">...</span>
+          ) : (
+            <button
+              onClick={() => onPageChange(page)}
+              className={`px-3 py-1 rounded-md ${
+                currentPage === page
+                  ? 'bg-blue-600 text-white'
+                  : 'hover:bg-blue-100 text-blue-600'
+              }`}
+            >
+              {page}
+            </button>
+          )}
+        </React.Fragment>
+      ))}
+      
+      {/* Next button */}
+      <button
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className={`px-3 py-1 rounded-md flex items-center ${
+          currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'
+        }`}
+      >
+        Next <FaChevronRight className="ml-1" />
+      </button>
+    </div>
   );
 };
 
@@ -81,6 +219,10 @@ const BlogContent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
+  
+  // Pagination states
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6); // Number of posts to display per page
 
   const fetchBlogs = async () => {
     try {
@@ -90,9 +232,9 @@ const BlogContent = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json(); // Extract JSON data from response
+      const data = await response.json();
       console.log('Blogs:', data);
-      setBlogPosts(data.data); // Use the actual data from the API response
+      setBlogPosts(data.data);
     } catch (error) {
       console.error('Error fetching blogs:', error);
     }
@@ -102,8 +244,10 @@ const BlogContent = () => {
     fetchBlogs();
   }, []);
 
-  
-  
+  useEffect(() => {
+    // Reset to page 1 whenever filters change
+    setCurrentPage(1);
+  }, [searchTerm, selectedCategory, selectedTag]);
 
   const popularPosts = [
     {
@@ -123,7 +267,6 @@ const BlogContent = () => {
     },
   ];
   
-
   const categories = [
     'Supply Chain Finance',
     'Industry Events',
@@ -192,10 +335,23 @@ const BlogContent = () => {
     }, 500);
   };
 
-  const displayPosts = searchTerm ? filteredPosts 
+  // Get all posts after applying filters
+  const allFilteredPosts = searchTerm ? filteredPosts 
     : selectedCategory ? filteredPosts 
     : selectedTag ? filteredPosts 
     : blogPosts;
+
+  // Calculate pagination
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allFilteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(allFilteredPosts.length / postsPerPage);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    window.scrollTo(0, 0); // Scroll to top when changing page
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <>
@@ -240,15 +396,22 @@ const BlogContent = () => {
               </div>
             )}
 
+            {/* Display post count and current page info */}
+            {allFilteredPosts.length > 0 && (
+              <div className="mb-6 text-sm text-gray-600">
+                Showing {indexOfFirstPost + 1}-{Math.min(indexOfLastPost, allFilteredPosts.length)} of {allFilteredPosts.length} posts
+              </div>
+            )}
+
             <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
               {isLoading ? (
                 // Show skeletons while loading
-                Array.from({ length: 4 }).map((_, index) => (
+                Array.from({ length: postsPerPage }).map((_, index) => (
                   <BlogCardSkeleton key={index} />
                 ))
-              ) : displayPosts.length > 0 ? (
-                // Show filtered results
-                displayPosts.map((post, index) => (
+              ) : currentPosts.length > 0 ? (
+                // Show filtered results with pagination
+                currentPosts.map((post, index) => (
                   <BlogCard key={index} post={post} />
                 ))
               ) : (
@@ -262,6 +425,15 @@ const BlogContent = () => {
                 </div>
               )}
             </div>
+
+            {/* Pagination */}
+            {!isLoading && allFilteredPosts.length > postsPerPage && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
           </div>
     
           {/* Sidebar Section */}
