@@ -10,7 +10,7 @@ const slides = [
     tagline: "Integrating Funding, Technology, and Best Practices for Success",
   },
   {
-    bgImage: "https://avatars.mds.yandex.net/i?id=465c3e8a4a37a60e92bb3ea62c537e92519dd6a7-11512273-images-thumbs&n=13",
+    bgImage: "/images/LandingPage/Empower.jpg",
     heading: "Empowering Businesses with Smart Financial Solutions",
     tagline: "Streamlining Transactions, Enhancing Efficiency, and Reducing Risks",
   },
