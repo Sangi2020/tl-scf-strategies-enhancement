@@ -30,13 +30,24 @@ const BlogCard = ({ post }) => {
   // Function to handle premium post click - opening WhatsApp
   const handlePremiumClick = (e) => {
     e.preventDefault(); // Prevent default navigation
-    
+    console.log(post);
+
     // WhatsApp message text - customize as needed
-    const message = `Hello! I'm interested in purchasing the premium blog post: "${post.title}" (ID: ${post.id})`;
-    
+    const message = `🌟 *Hello!* I hope you're doing well.  
+
+I'm interested in purchasing your premium blog post and would love to know more details. Here are the post details:  
+
+📌 *Title:* ${post.title}  
+📖 *Excerpt:* ${post.excerpt}  
+✍️ *Author:* ${post.author}  
+📅 *Published Date:* ${post.date}  
+
+💰 Could you please share details regarding pricing, access, and any additional information?  
+
+Looking forward to your response! 😊`
     // Create WhatsApp URL with encoded message
-    const whatsappURL = `https://wa.me/+918086229572?text=${encodeURIComponent(message)}`;
-    
+    const whatsappURL = `https://wa.me/+12392274289?text=${encodeURIComponent(message)}`;
+
     // Open WhatsApp in a new tab
     window.open(whatsappURL, '_blank');
   };
@@ -44,15 +55,15 @@ const BlogCard = ({ post }) => {
   // For premium posts, use a Link but with custom onClick handler
   if (post.isPremium) {
     return (
-      <div 
+      <div
         className="bg-white relative p-4 shadow-lg rounded-2xl overflow-hidden cursor-pointer transform transition-transform duration-300 hover:scale-105"
-       
+
       >
         {/* Premium Badge */}
         <div className="absolute top-5 right-5 bg-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold z-10 shadow-md">
           PREMIUM
         </div>
-        
+
         <div className="relative h-72 w-full">
           <Image
             src={post.image}
@@ -61,10 +72,10 @@ const BlogCard = ({ post }) => {
             objectFit="cover"
             className="w-full h-full rounded-2xl"
           />
-          
+
           {/* Purchase Button */}
           <div className="absolute left-5 bottom-5 z-10">
-            <button 
+            <button
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium shadow-lg transition-colors duration-200"
               onClick={(e) => {
                 e.stopPropagation(); // Stop event from bubbling up to parent
@@ -75,11 +86,11 @@ const BlogCard = ({ post }) => {
             </button>
           </div>
         </div>
-        
+
         <div className="py-2">
           <p className="text-gray-600 flex gap-2 text-xs">
             <BsCalendar2Date className="text-black" />
-            {post.author} 
+            {post.author}
           </p>
           <h3 className="mt-1 text-lg font-semibold text-title line-clamp-2">
             {post.title}
@@ -91,7 +102,7 @@ const BlogCard = ({ post }) => {
       </div>
     );
   }
-  
+
   // For regular posts, use Link for navigation to the blog post page
   return (
     <Link href={`/blog/${post.id}`} passHref>
@@ -108,7 +119,7 @@ const BlogCard = ({ post }) => {
         <div className="py-2">
           <p className="text-gray-600 flex gap-2 text-xs">
             <BsCalendar2Date className="text-black" />
-            {post.author} 
+            {post.author}
           </p>
           <h3 className="mt-1 text-lg font-semibold text-title line-clamp-2">
             {post.title}
@@ -128,15 +139,15 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     const pages = [];
     // Always show first page
     pages.push(1);
-    
+
     // Show pages around current page
     for (let i = Math.max(2, currentPage - 1); i <= Math.min(totalPages - 1, currentPage + 1); i++) {
       pages.push(i);
     }
-    
+
     // Always show last page if there's more than one page
     if (totalPages > 1) pages.push(totalPages);
-    
+
     // Add ellipsis where needed
     return pages.reduce((result, page, index, array) => {
       if (index > 0 && page - array[index - 1] > 1) {
@@ -153,13 +164,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className={`px-3 py-1 rounded-md flex items-center ${
-          currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'
-        }`}
+        className={`px-3 py-1 rounded-md flex items-center ${currentPage === 1 ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'
+          }`}
       >
         <FaChevronLeft className="mr-1" /> Prev
       </button>
-      
+
       {/* Page numbers */}
       {getPageNumbers().map((page, index) => (
         <React.Fragment key={index}>
@@ -168,25 +178,23 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           ) : (
             <button
               onClick={() => onPageChange(page)}
-              className={`px-3 py-1 rounded-md ${
-                currentPage === page
+              className={`px-3 py-1 rounded-md ${currentPage === page
                   ? 'bg-blue-600 text-white'
                   : 'hover:bg-blue-100 text-blue-600'
-              }`}
+                }`}
             >
               {page}
             </button>
           )}
         </React.Fragment>
       ))}
-      
+
       {/* Next button */}
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className={`px-3 py-1 rounded-md flex items-center ${
-          currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'
-        }`}
+        className={`px-3 py-1 rounded-md flex items-center ${currentPage === totalPages ? 'text-gray-400 cursor-not-allowed' : 'text-blue-600 hover:bg-blue-100'
+          }`}
       >
         Next <FaChevronRight className="ml-1" />
       </button>
@@ -219,7 +227,7 @@ const BlogContent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
-  
+
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(6); // Number of posts to display per page
@@ -227,7 +235,7 @@ const BlogContent = () => {
   const fetchBlogs = async () => {
     try {
       const response = await fetch('https://scf-cms-be-360l.onrender.com/api/v1/web/blog/get-all-blogs');
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -266,7 +274,7 @@ const BlogContent = () => {
       description: 'Insights into how companies can enhance resilience through strategic supply chain finance solutions.',
     },
   ];
-  
+
   const categories = [
     'Supply Chain Finance',
     'Industry Events',
@@ -274,7 +282,7 @@ const BlogContent = () => {
     'Case Studies',
     'Technology in SCF'
   ];
-  
+
   const tags = [
     'Supplier Onboarding',
     'Risk Management',
@@ -287,7 +295,7 @@ const BlogContent = () => {
     'Structure Selection',
     'Case Study'
   ];
-  
+
   const handleSearch = (value) => {
     setSearchTerm(value);
     setSelectedCategory('');
@@ -296,7 +304,7 @@ const BlogContent = () => {
 
     // Simulate API call delay
     setTimeout(() => {
-      const filtered = blogPosts.filter(post => 
+      const filtered = blogPosts.filter(post =>
         post.title.toLowerCase().includes(value.toLowerCase()) ||
         post.excerpt.toLowerCase().includes(value.toLowerCase())
       );
@@ -312,7 +320,7 @@ const BlogContent = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      const filtered = blogPosts.filter(post => 
+      const filtered = blogPosts.filter(post =>
         post.category === category
       );
       setFilteredPosts(filtered);
@@ -327,7 +335,7 @@ const BlogContent = () => {
     setIsLoading(true);
 
     setTimeout(() => {
-      const filtered = blogPosts.filter(post => 
+      const filtered = blogPosts.filter(post =>
         post.tags && post.tags.includes(tag)
       );
       setFilteredPosts(filtered);
@@ -336,10 +344,10 @@ const BlogContent = () => {
   };
 
   // Get all posts after applying filters
-  const allFilteredPosts = searchTerm ? filteredPosts 
-    : selectedCategory ? filteredPosts 
-    : selectedTag ? filteredPosts 
-    : blogPosts;
+  const allFilteredPosts = searchTerm ? filteredPosts
+    : selectedCategory ? filteredPosts
+      : selectedTag ? filteredPosts
+        : blogPosts;
 
   // Calculate pagination
   const indexOfLastPost = currentPage * postsPerPage;
@@ -356,18 +364,18 @@ const BlogContent = () => {
   return (
     <>
       <AuroraBackgroundDemo
-        title={'Blogs'} 
-        description={'Elevate Your Supply Chain Finance Strategy'} 
-        link={'Learn More'} 
+        title={'Blogs'}
+        description={'Elevate Your Supply Chain Finance Strategy'}
+        link={'Learn More'}
       />
       <div className="text-stone-800 py-10 flex justify-center max-w-7xl mx-auto px-4 relative">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
+
           {/* Search Bar on top for mobile */}
           <div className="lg:hidden order-first mb-8 w-full">
             <SearchBar onSearch={handleSearch} />
           </div>
-    
+
           {/* Blog Posts Section */}
           <div className="lg:col-span-2">
             {/* Current Filter Display */}
@@ -418,9 +426,9 @@ const BlogContent = () => {
                 // Show no results message
                 <div className="col-span-2 text-center py-10">
                   <h3 className="text-xl font-semibold text-gray-600">
-                    No posts found {searchTerm ? `matching "${searchTerm}"` : 
-                    selectedCategory ? `in category "${selectedCategory}"` : 
-                    selectedTag ? `with tag "${selectedTag}"` : ''}
+                    No posts found {searchTerm ? `matching "${searchTerm}"` :
+                      selectedCategory ? `in category "${selectedCategory}"` :
+                        selectedTag ? `with tag "${selectedTag}"` : ''}
                   </h3>
                 </div>
               )}
@@ -435,15 +443,15 @@ const BlogContent = () => {
               />
             )}
           </div>
-    
+
           {/* Sidebar Section */}
           <div className="space-y-8 order-last lg:order-none">
-            
+
             {/* Search Bar for desktop view */}
             <div className="hidden lg:block">
               <SearchBar onSearch={handleSearch} />
             </div>
-    
+
             {/* Popular Posts */}
             <div className="bg-white p-6 shadow-md">
               <h4 className="text-lg font-semibold mb-4">Popular Posts</h4>
@@ -456,14 +464,14 @@ const BlogContent = () => {
                 ))}
               </ul>
             </div>
-    
+
             {/* Categories */}
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h4 className="text-lg font-semibold mb-4">Categories</h4>
               <ul>
                 {categories.map((category, index) => (
                   <li key={index} className="mb-2 text-gray-700">
-                    <button 
+                    <button
                       onClick={() => handleCategoryFilter(category)}
                       className={`text-gray-700 hover:text-blue-500 ${selectedCategory === category ? 'font-bold text-blue-600' : ''}`}
                     >
@@ -473,14 +481,14 @@ const BlogContent = () => {
                 ))}
               </ul>
             </div>
-    
+
             {/* Tags */}
             <div className="bg-white p-6 rounded-lg shadow-md">
               <h4 className="text-lg font-semibold mb-4">Tags</h4>
               <div className="flex flex-wrap">
                 {tags.map((tag, index) => (
-                  <button 
-                    key={index} 
+                  <button
+                    key={index}
                     onClick={() => handleTagFilter(tag)}
                     className={`mr-2 mb-2 inline-block px-3 py-1 text-sm bg-gray-200 rounded-full hover:bg-gray-300 ${selectedTag === tag ? 'bg-blue-200' : ''}`}
                   >
