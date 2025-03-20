@@ -8,17 +8,13 @@ const slides = [
     bgImage: "/images/LandingPage/hero.jpg",
     heading: "Transforming Supply Chain Finance with Expertise and Innovation",
     tagline: "Integrating Funding, Technology, and Best Practices for Success",
-  },
+  }
+  ,
   {
-    bgImage: "https://avatars.mds.yandex.net/i?id=465c3e8a4a37a60e92bb3ea62c537e92519dd6a7-11512273-images-thumbs&n=13",
+    bgImage: "/images/LandingPage/hero1.jpg",
     heading: "Empowering Businesses with Smart Financial Solutions",
     tagline: "Streamlining Transactions, Enhancing Efficiency, and Reducing Risks",
-  },
-  {
-    bgImage: "https://s.yimg.com/ny/api/res/1.2/1PqkmR35cM_P8V2tpbG2Zg--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyMDA7aD04MDA-/https://s.yimg.com/os/creatr-images/2019-08/833a5b20-c8e0-11e9-b73d-0635258dde38",
-    heading: "Innovative Financing for a Resilient Supply Chain",
-    tagline: "Driving Growth and Stability through Intelligent Capital Management",
-  },
+  }
 ];
 
 function HeroSec() {
@@ -34,7 +30,7 @@ function HeroSec() {
   useEffect(() => {
     const startZoom = () => {
       const startScale = 1;
-      const endScale = 1.15;
+      const endScale = 1;
       const duration = 7000; // 7 seconds for the zoom
       const startTime = Date.now();
       
@@ -168,7 +164,7 @@ function HeroSec() {
             backgroundImage: `url(${slides[nextIndex].bgImage})`,
             backgroundPosition: 'center',
             transformOrigin: 'center',
-            opacity: blendProgress,
+            // opacity: blendProgress,
             transform: `scale(1)`, // Start fresh with new image
             transition: 'opacity 1.5s ease-in'
           }}
@@ -177,12 +173,22 @@ function HeroSec() {
 
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black opacity-30"></div>
+      <div className="absolute inset-0 max-w-8xl opacity-30">
+        <div className="absolute bottom-0 right-0 ">
+
+          {/* <h1>event start soon</h1> */}
+          <div className="text-[150px] font-bold text-opacity-20 text-white"><span>SCF</span> <span className="text-[150px] font-bold ">STRATEGIES</span></div>
+
+        </div>
+      </div>
 
       {/* Content */}
       <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-end justify-end h-full">
         <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
           {/* Animated Text */}
           <AnimatePresence mode="wait">
+            {currentIndex===1&&
+            
             <motion.div key={`content-${currentIndex}`} className="w-full">
               <motion.h1 
                 variants={textVariants}
@@ -216,6 +222,51 @@ function HeroSec() {
                 <CustomeButton title="Get Started" />
               </motion.div>
             </motion.div>
+            
+            }
+              {currentIndex===0&&<motion.div 
+            variants={textVariants} 
+            initial="hidden" 
+            animate="visible" 
+            exit="exit" 
+            custom={3} 
+            className="w-full  mt-8 md:mt-0 "
+          >
+            <div className=" backdrop-blur-sm  rounded-lg shadow-lg">
+              {/* <h2 className="text-2xl font-bold text-white mb-2">REGISTER NOW</h2>
+              <div className="w-16 h-1 bg-white mb-4"></div> */}
+              <p className="md:text-lg text-sm font-semibold text-stone-400 mb-4">GAME CHANGING INSIGHTS & POWERFUL CONVERSATIONS</p>
+              
+              <h3 className="md:text-4xl text-lg font-bold text-white mb-2">RUTGERS BUSINESS SCHOOL SUPPLY CHAIN FINANCING CONFERENCE</h3>
+              <p className="text-white md:text-4xl text-lg  mb-2">Explore cutting-edge financing strategies for supply chains.</p>
+              <p className="text-white font-semibold mb-6">ENGAGE WITH TOP INDUSTRY EXPERTS —DON'T MISS OUT!—</p>
+              
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-white font-bold">JOIN ME LIVE</p>
+                  <p className="text-white">March 20, 2025</p>
+                </div>
+              </div>
+              
+              <div className="flex items-center mb-6">
+                <div className="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-white">8:00 AM - 5:00 PM EDT</p>
+                </div>
+              </div>
+              <CustomeButton title="REGISTER NOW" />
+              
+            </div>
+          </motion.div>}
           </AnimatePresence>
         </div>
       </div>
