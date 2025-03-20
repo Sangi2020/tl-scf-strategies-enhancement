@@ -164,7 +164,7 @@ function HeroSec() {
             backgroundImage: `url(${slides[nextIndex].bgImage})`,
             backgroundPosition: 'center',
             transformOrigin: 'center',
-            // opacity: blendProgress,
+            opacity: blendProgress,
             transform: `scale(1)`, // Start fresh with new image
             transition: 'opacity 1.5s ease-in'
           }}
