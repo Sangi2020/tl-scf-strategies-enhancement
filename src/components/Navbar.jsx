@@ -90,7 +90,7 @@ const Navbar = () => {
               <Link href="/" className="flex items-center">
                 {logoUrl && (
                   <Image
-                    src={logoUrl?logoUrl:"https://www.scfstrategies.com/_next/image?url=%2Fimages%2Flogo.png&w=96&q=75"}
+                    src={logoUrl?logoUrl:"https://www.scfstrategies.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdn4kcza7g%2Fimage%2Fupload%2Fv1740976694%2Fscf%2Fsettings%2Ficcozjq6k4pmvkebi76f.jpg&w=256&q=75"}
                     alt="Company Logo"
                     width={80}
                     height={50}
@@ -175,7 +175,7 @@ const Navbar = () => {
           <div className="px-4 pt-5 pb-6 space-y-6">
             {/* Logo & Close Button */}
             <div className="flex items-center justify-between">
-            src={logoUrl?logoUrl:"https://www.scfstrategies.com/_next/image?url=%2Fimages%2Flogo.png&w=96&q=75"}
+            src={logoUrl?logoUrl:"https://www.scfstrategies.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdn4kcza7g%2Fimage%2Fupload%2Fv1740976694%2Fscf%2Fsettings%2Ficcozjq6k4pmvkebi76f.jpg&w=256&q=75"}
             <button
                 onClick={() => setIsOpen(false)}
                 className="bg-white rounded-md p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
@@ -185,15 +185,38 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Navigation */}
-            <nav className="grid gap-y-5">
-              <NavLink href="/" isMobile>Home</NavLink>
-              <NavLink href="#" isMobile dropdown={<>
-                <Link href="/advisory-service" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Advisory Service</Link>
-                <Link href="/consulting-service" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Consulting Service</Link>
-              </>}>Services</NavLink>
-              <NavLink href="/about-us" isMobile>About Us</NavLink>
-              <NavLink href="/contact-us" isMobile>Contact</NavLink>
-            </nav>
+            <nav className="grid gap-y-5 nav-link">
+                <Link href="/" className="block px-2   font-semibold text-gray-700 hover:text-blue-500 " onClick={handleLinkClick}>Home</Link>
+                <NavLink
+                  href="#"
+                  dropdown={
+                    <>
+                      <Link href="/advisory-service" className="block px-4 py-2  font-semibold text-gray-700 hover:text-blue-500 hover:bg-gray-100" onClick={handleLinkClick}>Advisory Service</Link>
+                      <Link href="/consulting-service" className="block px-4 py-2  font-semibold text-gray-700 hover:text-blue-500 hover:bg-gray-100" onClick={handleLinkClick}>Consulting Service</Link>
+                    </>
+                  }
+                  isMobile
+                >
+                  Services
+                </NavLink>
+                <Link href="/about-us" className="block px-2   font-semibold text-gray-700 hover:text-blue-500 "onClick={handleLinkClick} >About Us</Link>
+                <NavLink
+                  href="#"
+                  dropdown={
+                    <>
+                      <Link href="/blog" className="block px-4 py-2  font-semibold text-gray-700 hover:text-blue-500 hover:bg-gray-100" onClick={handleLinkClick}>Blogs</Link>
+                      <Link href="/clients" className="block px-4 py-2  font-semibold text-gray-700 hover:text-blue-500 hover:bg-gray-100" onClick={handleLinkClick}>Clients</Link>
+                      <Link href="/resource-center" className="block px-4 py-2  font-semibold text-gray-700 hover:bg-gray-100"onClick={handleLinkClick}>Resource Center</Link>
+                      <Link href="/enablement" className="block px-4 py-2  font-semibold text-gray-700 hover:text-blue-500 hover:bg-gray-100"onClick={handleLinkClick}>Solutions & Enablement</Link>
+                      <Link href="/faqs" className="block px-4 py-2  font-semibold text-gray-700 hover:text-blue-500 hover:bg-gray-100"onClick={handleLinkClick}>FAQs</Link>
+                    </>
+                  }
+                  isMobile
+                >
+                  Explore
+                </NavLink>
+                <Link href="/contact-us" className="block px-2   font-semibold text-gray-700 hover:text-blue-500 "onClick={handleLinkClick}>Contact</Link>
+              </nav>
           </div>
         </div>
       </div>
