@@ -239,7 +239,7 @@ function HeroSec() {
               
               <h3 className="md:text-4xl text-lg font-bold text-white mb-2">RUTGERS BUSINESS SCHOOL SUPPLY CHAIN FINANCING CONFERENCE</h3>
               <p className="text-white md:text-4xl text-lg  mb-2">Explore cutting-edge financing strategies for supply chains.</p>
-              <p className="text-white font-semibold mb-6">ENGAGE WITH TOP INDUSTRY EXPERTS —DON'T MISS OUT!—</p>
+              <p className="text-white font-semibold mb-6">ENGAGE WITH TOP INDUSTRY EXPERTS —DON&apos;T MISS OUT!—</p>
               
               <div className="flex items-center mb-4">
                 <div className="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4">
