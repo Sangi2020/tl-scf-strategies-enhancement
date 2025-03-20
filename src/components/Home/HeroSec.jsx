@@ -165,7 +165,7 @@ function HeroSec() {
             backgroundPosition: 'center',
             transformOrigin: 'center',
             opacity: blendProgress,
-            transform: `scale(1)`, // Start fresh with new image
+            transform: `scale(1)`, 
             transition: 'opacity 1.5s ease-in'
           }}
         />
@@ -263,7 +263,7 @@ function HeroSec() {
                   <p className="text-white">8:00 AM - 5:00 PM EDT</p>
                 </div>
               </div>
-              <CustomeButton title="REGISTER NOW" />
+              <CustomeButton newTab title="REGISTER NOW" link={"https://www.business.rutgers.edu/events/rutgers-business-school-supply-chain-financing-conference"} />
               
             </div>
           </motion.div>}
