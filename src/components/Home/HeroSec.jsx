@@ -187,7 +187,7 @@ function HeroSec() {
         <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
           {/* Animated Text */}
           <AnimatePresence mode="wait">
-            {currentIndex===1&&
+            
             
             <motion.div key={`content-${currentIndex}`} className="w-full">
               <motion.h1 
@@ -223,50 +223,8 @@ function HeroSec() {
               </motion.div>
             </motion.div>
             
-            }
-              {currentIndex===0&&<motion.div 
-            variants={textVariants} 
-            initial="hidden" 
-            animate="visible" 
-            exit="exit" 
-            custom={3} 
-            className="w-full  mt-8 md:mt-0 "
-          >
-            <div className=" backdrop-blur-sm  rounded-lg shadow-lg">
-              {/* <h2 className="text-2xl font-bold text-white mb-2">REGISTER NOW</h2>
-              <div className="w-16 h-1 bg-white mb-4"></div> */}
-              <p className="md:text-lg text-sm font-semibold text-stone-400 mb-4">GAME CHANGING INSIGHTS & POWERFUL CONVERSATIONS</p>
-              
-              <h3 className="md:text-4xl text-lg font-bold text-white mb-2">RUTGERS BUSINESS SCHOOL SUPPLY CHAIN FINANCING CONFERENCE</h3>
-              <p className="text-white md:text-4xl text-lg  mb-2">Explore cutting-edge financing strategies for supply chains.</p>
-              <p className="text-white font-semibold mb-6">ENGAGE WITH TOP INDUSTRY EXPERTS —DON&apos;T MISS OUT!—</p>
-              
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-white font-bold">JOIN ME LIVE</p>
-                  <p className="text-white">March 20, 2025</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-4">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <div>
-                  <p className="text-white">8:00 AM - 5:00 PM EDT</p>
-                </div>
-              </div>
-              <CustomeButton newTab title="REGISTER NOW" link={"https://www.business.rutgers.edu/events/rutgers-business-school-supply-chain-financing-conference"} />
-              
-            </div>
-          </motion.div>}
+           
+             
           </AnimatePresence>
         </div>
       </div>
