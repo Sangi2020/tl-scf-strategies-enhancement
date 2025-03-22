@@ -46,7 +46,7 @@ I'm interested in purchasing your premium blog post and would love to know more 
 
 Looking forward to your response! 😊`
     // Create WhatsApp URL with encoded message
-    const whatsappURL = `https://wa.me/+12392274289?text=${encodeURIComponent(message)}`;
+    const whatsappURL = `https://wa.me/+12034709377?text=${encodeURIComponent(message)}`;
 
     // Open WhatsApp in a new tab
     window.open(whatsappURL, '_blank');
