@@ -55,7 +55,7 @@ const ContactContent = () => {
                         <Phone className="w-6 h-6 text-blue-600" />
                       </div>
                       <h3 className="font-semibold text-gray-800">Call Us</h3>
-                      <p className="text-2xl text-title">{phone}</p>
+                      <p className="text-2xl text-title">+{phone}</p>
                     </div>
                   </a>
                 )}
