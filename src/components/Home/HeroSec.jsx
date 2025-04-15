@@ -249,7 +249,7 @@ function HeroSec() {
           </div>
         </div>
       ) : (
-        <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-end justify-end h-full">
+        <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-center justify-center h-full">
           <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
             <AnimatePresence mode="wait">
               <motion.div key={`content-text-${currentIndex}`} className="w-full">
