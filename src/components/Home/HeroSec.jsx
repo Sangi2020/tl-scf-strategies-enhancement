@@ -291,7 +291,7 @@ function HeroSec() {
         Learn more about event <FaArrowRight />
       </button>
     </div>
-              <h1>Stay tuned , I will be share the event details here</h1>
+              <h1 className="text-title">Stay tuned , I will be sharing insights and takeaways from the event right here</h1>
             </div>
           </div>
         </div>
