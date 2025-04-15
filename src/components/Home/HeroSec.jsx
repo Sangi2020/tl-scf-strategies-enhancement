@@ -136,7 +136,7 @@ function HeroSec() {
   };
 
   return (
-    <div className="relative md:h-screen h-[70vh] bg-[#ede8f5] overflow-hidden">
+    <div className="relative md:h-screen h-[100vh] bg-[#ede8f5] overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
