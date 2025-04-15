@@ -186,7 +186,7 @@ function HeroSec() {
       <div className="relative flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
         {/* Text Block with Animation */}
         <motion.div
-          className="z-50 space-y-4 bg-black/40 rounded-lg p-4"
+          className="z-50 space-y-4 bg-black/40 text-white rounded-lg p-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
