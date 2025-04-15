@@ -286,10 +286,8 @@ function HeroSec() {
         <FaMapMarkerAlt />
         <span>Location: Lotte New York Palace, NYC</span>
       </div>
-
-      <button className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
-        Learn more about event <FaArrowRight />
-      </button>
+      <CustomeButton title="Learn more about event" />
+      
     </div>
               <h1 className="text-title">Stay tuned , I will be sharing insights and takeaways from the event right here</h1>
             </div>
