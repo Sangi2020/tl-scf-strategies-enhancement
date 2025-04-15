@@ -267,7 +267,7 @@ function HeroSec() {
           >
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="relative z-10 flex flex-col space-y-4 items-start mb-10 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full">
-              <h1 className="md:text-2xl text-xl font-bold text-black">
+              <h1 className="md:text-2xl text-xl  text-black">
                 As the forum makes its U.S. debut after more than a decade in
                 Europe, it will bring together over 100 senior leaders from
                 treasury, procurement, supply chain, and payments. I look
@@ -277,17 +277,17 @@ function HeroSec() {
               </h1>
 
               <div className="flex gap-4 flex-wrap items-center">
-      <div className="flex items-center gap-2 bg-cyan-600 p-3 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
+      <div className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
         <FaCalendarAlt />
         <span>Date: May 1, 2025</span>
       </div>
 
-      <div className="flex items-center gap-2 bg-cyan-600 p-3 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
+      <div className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
         <FaMapMarkerAlt />
         <span>Location: Lotte New York Palace, NYC</span>
       </div>
 
-      <button className="flex items-center gap-2 bg-cyan-600 p-3 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
+      <button className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
         Learn more about event <FaArrowRight />
       </button>
     </div>
