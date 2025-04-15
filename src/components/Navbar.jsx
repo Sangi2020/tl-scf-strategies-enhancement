@@ -90,7 +90,7 @@ const Navbar = () => {
               <Link href="/" className="flex items-center">
                 {logoUrl && (
                   <Image
-                    src={logoUrl?logoUrl:"https://www.scfstrategies.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdn4kcza7g%2Fimage%2Fupload%2Fv1740976694%2Fscf%2Fsettings%2Ficcozjq6k4pmvkebi76f.jpg&w=256&q=75"}
+                    src={logoUrl}
                     alt="Company Logo"
                     width={80}
                     height={50}
