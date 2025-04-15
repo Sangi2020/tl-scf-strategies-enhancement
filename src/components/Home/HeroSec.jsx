@@ -226,7 +226,7 @@ function HeroSec() {
                 "url('/images/LandingPage/topbgcompany.png')",
             }}
           >
-            <div className="absolute inset-0 bg-cyan-800/80"></div>
+            <div className="absolute inset-0 bg-black/80"></div>
 
             <div className="relative  flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
             <div className="z-50 space-y-4  rounded-lg">
