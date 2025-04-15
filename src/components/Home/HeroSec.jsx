@@ -173,81 +173,130 @@ function HeroSec() {
       </div>
 
       {currentIndex === 0 ? (
-          <div className="relative z-10 flex md:items-center flex-col w-full  mx-auto md:justify-start bg-black items-end justify-end h-full">
-          <div
-            className="relative bg-pink-100 h-1/2 w-full bg-cover bg-top"
-            style={{
-              backgroundImage:
-                "url('/images/LandingPage/topbgcompany.png')",
-            }}
+  <div className="relative z-10 flex md:items-center flex-col w-full mx-auto md:justify-start bg-black items-end justify-end h-full">
+    {/* Top Section with Background */}
+    <div
+      className="relative bg-pink-100 h-1/2 w-full bg-cover bg-top"
+      style={{
+        backgroundImage: "url('/images/LandingPage/topbgcompany.png')",
+      }}
+    >
+      <div className="absolute inset-0 bg-black/80"></div>
+
+      <div className="relative flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
+        {/* Text Block with Animation */}
+        <motion.div
+          className="z-50 space-y-4 bg-black/40 rounded-lg p-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h1
+            className="md:text-4xl text-2xl font-bold"
+            style={{ textShadow: "2px 2px 6px rgba(0, 0, 0, 0.6)" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
           >
-            <div className="absolute inset-0 bg-black/80"></div>
+            I will be Speaking at the Working Capital Forum - Americas 2025
+          </motion.h1>
 
-            <div className="relative  flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
-            <div className="z-50 space-y-4 bg-black/40  rounded-lg">
-            <h1
-  className="md:text-4xl text-2xl font-bold"
-  style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
->
-  I will be Speaking at the Working Capital Forum - Americas 2025
-</h1>
-
-<h1
-  className="md:text-3xl text-xl"
-  style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
->
-  I am excited to share that I will be attending the Working
-  Capital Forum – Americas on May 1st, 2025, at the iconic Lotte
-  New York Palace in New York City
-</h1>
-
-              </div>
-              <div className="absolute -bottom-10 right-0 h-full w-auto">
-                <Image
-                  src="/images/LandingPage/erci.png"
-                  alt="Company Logo"
-                  width={300}
-                  height={300}
-                  className="h-full w-auto object-contain"
-                  priority
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className=" h-1/2 w-full bg-cover bg-gray-200 bg-bottom relative"
-            style={{
-              backgroundImage: "url('/images/LandingPage/bgpattern.png')",
-            }}
+          <motion.h1
+            className="md:text-3xl text-xl"
+            style={{ textShadow: "2px 2px 6px rgba(0, 0, 0, 0.6)" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2 }}
           >
-            <div className="absolute inset-0 bg-black/10"></div>
-            <div className="relative z-10 flex flex-col space-y-4 items-start mb-10 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full">
-              <h1 className="md:text-2xl text-sm  text-black">
-                As the forum makes its U.S. debut after more than a decade in
-                Europe, it will bring together over 100 senior leaders from
-                treasury, procurement, supply chain, and payments. I look
-                forward to joining conversations around payables, receivables,
-                inventory finance, supply chain innovation, and cash
-                forecasting—key levers shaping the future of working capital.
-              </h1>
+            I am excited to share that I will be attending the Working Capital
+            Forum – Americas on May 1st, 2025, at the iconic Lotte New York
+            Palace in New York City
+          </motion.h1>
+        </motion.div>
 
-              <div className="flex gap-4 flex-wrap items-center">
-      <div className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
-        <FaCalendarAlt />
-        <span>Date: May 1, 2025</span>
-      </div>
-
-      <div className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
-        <FaMapMarkerAlt />
-        <span>Location: Lotte New York Palace, NYC</span>
-      </div>
-      <CustomeButton title="Learn more about event" />
-      
-    </div>
-              <h1 className="text-title">Stay tuned , I will be sharing insights and takeaways from the event right here</h1>
-            </div>
-          </div>
+        {/* Image */}
+        <div className="absolute -bottom-10 right-0 h-full w-auto">
+          <Image
+            src="/images/LandingPage/erci.png"
+            alt="Company Logo"
+            width={300}
+            height={300}
+            className="h-full w-auto object-contain"
+            priority
+          />
         </div>
+      </div>
+    </div>
+
+    {/* Bottom Section */}
+    <div
+      className="h-1/2 w-full bg-cover bg-gray-200 bg-bottom relative"
+      style={{
+        backgroundImage: "url('/images/LandingPage/bgpattern.png')",
+      }}
+    >
+      <div className="absolute inset-0 bg-black/10"></div>
+
+      <motion.div
+        className="relative z-10 flex flex-col space-y-4 items-start mb-10 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+      >
+         <motion.h1
+            className="md:text-4xl text-2xl font-bold"
+            style={{ textShadow: "2px 2px 6px rgba(0, 0, 0, 0.6)" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+          As the forum makes its U.S. debut after more than a decade in Europe,
+          it will bring together over 100 senior leaders from treasury,
+          procurement, supply chain, and payments. I look forward to joining
+          conversations around payables, receivables, inventory finance, supply
+          chain innovation, and cash forecasting—key levers shaping the future
+          of working capital.
+        </motion.h1>
+
+        {/* Event Info Buttons with Icons */}
+        <div className="flex gap-4 flex-wrap items-center">
+          <motion.div
+            className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white"
+            whileHover={{ scale: 1.05 }}
+          >
+            <FaCalendarAlt />
+            <span>Date: May 1, 2025</span>
+          </motion.div>
+
+          <motion.div
+            className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white"
+            whileHover={{ scale: 1.05 }}
+          >
+            <FaMapMarkerAlt />
+            <span>Location: Lotte New York Palace, NYC</span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.8 }}
+          >
+            <CustomeButton title="Learn more about event" />
+          </motion.div>
+        </div>
+
+        <motion.h1
+          className="text-title"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 2 }}
+        >
+          Stay tuned, I will be sharing insights and takeaways from the event
+          right here
+        </motion.h1>
+      </motion.div>
+    </div>
+  </div>
       ) : (
         <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-center justify-center h-full">
           <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
