@@ -231,14 +231,14 @@ function HeroSec() {
             <div className="relative  flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
             <div className="z-50 space-y-4  rounded-lg">
             <h1
-  className="text-4xl font-bold"
+  className="md:text-4xl text-2xl font-bold"
   style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
 >
   I will be Speaking at the Working Capital Forum - Americas 2025
 </h1>
 
 <h1
-  className="text-3xl"
+  className="md:text-3xl text-xl"
   style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
 >
   I am excited to share that I will be attending the Working
@@ -247,7 +247,7 @@ function HeroSec() {
 </h1>
 
               </div>
-              <div className="absolute bottom-0 right-0 h-full w-auto">
+              <div className="absolute -bottom-10 right-0 h-full w-auto">
                 <Image
                   src="/images/LandingPage/erci.png"
                   alt="Company Logo"
