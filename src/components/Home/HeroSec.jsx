@@ -173,52 +173,7 @@ function HeroSec() {
       </div>
 
       {currentIndex === 0 ? (
-        <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-end justify-end h-full">
-          <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
-            <AnimatePresence mode="wait">
-              <motion.div key={`content-text-${currentIndex}`} className="w-full">
-                <motion.h1
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  custom={0}
-                  className="main-heading"
-                >
-                  {slides[currentIndex].heading}
-                </motion.h1>
-
-                <motion.p
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  custom={1}
-                  className="tagline"
-                >
-                  {slides[currentIndex].tagline}
-                </motion.p>
-
-                <motion.div
-                  variants={textVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  custom={2}
-                >
-                  <CustomeButton title="Get Started" />
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                key={`content-bg-${currentIndex}`}
-                className="w-full h-full bg-black"
-              />
-            </AnimatePresence>
-          </div>
-        </div>
-      ) : (
-        <div className="relative z-10 flex md:items-center flex-col w-full  mx-auto md:justify-start bg-black items-end justify-end h-full">
+          <div className="relative z-10 flex md:items-center flex-col w-full  mx-auto md:justify-start bg-black items-end justify-end h-full">
           <div
             className="relative bg-pink-100 h-1/2 w-full bg-cover bg-top"
             style={{
@@ -293,6 +248,52 @@ function HeroSec() {
             </div>
           </div>
         </div>
+      ) : (
+        <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-end justify-end h-full">
+          <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
+            <AnimatePresence mode="wait">
+              <motion.div key={`content-text-${currentIndex}`} className="w-full">
+                <motion.h1
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  custom={0}
+                  className="main-heading"
+                >
+                  {slides[currentIndex].heading}
+                </motion.h1>
+
+                <motion.p
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  custom={1}
+                  className="tagline"
+                >
+                  {slides[currentIndex].tagline}
+                </motion.p>
+
+                <motion.div
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  custom={2}
+                >
+                  <CustomeButton title="Get Started" />
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                key={`content-bg-${currentIndex}`}
+                className="w-full h-full bg-black"
+              />
+            </AnimatePresence>
+          </div>
+        </div>
+      
       )}
     </div>
   );
