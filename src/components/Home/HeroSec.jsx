@@ -244,7 +244,7 @@ function HeroSec() {
         transition={{ duration: 1.5 }}
       >
          <motion.h1
-            className="md:text-4xl text-2xl font-bold"
+            className="md:text-2xl text-sm text-black"
             style={{ textShadow: "2px 2px 6px rgba(0, 0, 0, 0.6)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
