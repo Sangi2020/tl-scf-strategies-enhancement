@@ -2,19 +2,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CustomeButton from "../ui/CustomeButton";
+import Image from "next/image";
+import { FaCalendarAlt, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
 
 const slides = [
   {
-    bgImage: "/images/LandingPage/hero.jpg",
+    bgImage: "/images/LandingPage/hero1.jpg",
     heading: "Transforming Supply Chain Finance with Expertise and Innovation",
     tagline: "Integrating Funding, Technology, and Best Practices for Success",
-  }
-  ,
+  },
   {
     bgImage: "/images/LandingPage/hero1.jpg",
     heading: "Empowering Businesses with Smart Financial Solutions",
     tagline: "Streamlining Transactions, Enhancing Efficiency, and Reducing Risks",
-  }
+  },
 ];
 
 function HeroSec() {
@@ -26,33 +27,31 @@ function HeroSec() {
   const animationRef = useRef(null);
   const zoomRef = useRef(null);
 
-  // Start the continuous zoom effect
   useEffect(() => {
     const startZoom = () => {
       const startScale = 1;
       const endScale = 1;
-      const duration = 7000; // 7 seconds for the zoom
+      const duration = 7000;
       const startTime = Date.now();
-      
+
       const animateZoom = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        const newScale = startScale + (progress * (endScale - startScale));
+        const newScale = startScale + progress * (endScale - startScale);
         setCurrentScale(newScale);
-        
+
         if (progress < 1 && !isTransitioning) {
           zoomRef.current = requestAnimationFrame(animateZoom);
         } else if (!isTransitioning) {
-          // Restart zoom when it finishes
           startZoom();
         }
       };
-      
+
       zoomRef.current = requestAnimationFrame(animateZoom);
     };
-    
+
     startZoom();
-    
+
     return () => {
       if (zoomRef.current) {
         cancelAnimationFrame(zoomRef.current);
@@ -60,48 +59,45 @@ function HeroSec() {
     };
   }, [isTransitioning]);
 
-  // Effect for automatic slideshow
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isTransitioning) {
         startTransition();
       }
-    }, 6000); // Increased to 6 seconds to enjoy the zoom effect
+    }, 6000);
 
     return () => clearInterval(interval);
   }, [isTransitioning]);
 
-  // Effect for handling transitions
   useEffect(() => {
     if (isTransitioning) {
-      // Cancel any ongoing zoom animation
       if (zoomRef.current) {
         cancelAnimationFrame(zoomRef.current);
       }
-      
-      const duration = 1500; // 1.5 seconds for transition
+
+      const duration = 1500;
       const startTime = Date.now();
       const startScale = currentScale;
-      
+
       const animateBlend = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
         setBlendProgress(progress);
-        
+
         if (progress < 1) {
           animationRef.current = requestAnimationFrame(animateBlend);
         } else {
           setCurrentIndex(nextIndex);
           setNextIndex((nextIndex + 1) % slides.length);
           setBlendProgress(0);
-          setCurrentScale(1); // Reset scale for the new slide
+          setCurrentScale(1);
           setIsTransitioning(false);
         }
       };
-      
+
       animationRef.current = requestAnimationFrame(animateBlend);
     }
-    
+
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -109,13 +105,11 @@ function HeroSec() {
     };
   }, [isTransitioning, nextIndex, currentScale]);
 
-  // Function to start transition
   const startTransition = () => {
     setNextIndex((currentIndex + 1) % slides.length);
     setIsTransitioning(true);
   };
 
-  // Function to handle navigation dot clicks
   const handleDotClick = (index) => {
     if (!isTransitioning && index !== currentIndex) {
       setNextIndex(index);
@@ -125,123 +119,183 @@ function HeroSec() {
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: (custom) => ({ 
-      opacity: 1, 
+    visible: (custom) => ({
+      opacity: 1,
       y: 0,
-      transition: { 
-        duration: 0.7, 
+      transition: {
+        duration: 0.7,
         ease: "easeOut",
-        delay: custom * 0.2
-      }
+        delay: custom * 0.2,
+      },
     }),
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       y: -20,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   return (
     <div className="relative md:h-screen h-[70vh] bg-[#ede8f5] overflow-hidden">
-      {/* Current Background Image with Zoom */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ 
+        style={{
           backgroundImage: `url(${slides[currentIndex].bgImage})`,
-          backgroundPosition: 'center',
-          transformOrigin: 'center',
+          backgroundPosition: "center",
+          transformOrigin: "center",
           transform: `scale(${isTransitioning ? currentScale : currentScale})`,
           opacity: isTransitioning ? 1 - blendProgress : 1,
-          transition: isTransitioning ? 'opacity 1.5s ease-out' : 'none'
+          transition: isTransitioning ? "opacity 1.5s ease-out" : "none",
         }}
       />
-      
-      {/* Next Background Image for Blending */}
       {isTransitioning && (
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ 
+          style={{
             backgroundImage: `url(${slides[nextIndex].bgImage})`,
-            backgroundPosition: 'center',
-            transformOrigin: 'center',
+            backgroundPosition: "center",
+            transformOrigin: "center",
             opacity: blendProgress,
-            transform: `scale(1)`, 
-            transition: 'opacity 1.5s ease-in'
+            transform: `scale(1)`,
+            transition: "opacity 1.5s ease-in",
           }}
         />
       )}
 
-      {/* Dark Overlay */}
       <div className="absolute inset-0 bg-black opacity-30"></div>
       <div className="absolute inset-0 max-w-8xl opacity-30">
         <div className="absolute bottom-0 right-0 ">
-
-          {/* <h1>event start soon</h1> */}
-          <div className="text-[150px] font-bold text-opacity-20 text-white"><span>SCF</span> <span className="text-[150px] font-bold ">STRATEGIES</span></div>
-
+          <div className="text-[150px] font-bold text-opacity-20 text-white">
+            <span>SCF</span>{" "}
+            <span className="text-[150px] font-bold ">STRATEGIES</span>
+          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-end justify-end h-full">
-        <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
-          {/* Animated Text */}
-          <AnimatePresence mode="wait">
-            
-            
-            <motion.div key={`content-${currentIndex}`} className="w-full">
-              <motion.h1 
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                custom={0}
-                className="main-heading"
-              >
-                {slides[currentIndex].heading}
-              </motion.h1>
+      {currentIndex === 0 ? (
+        <div className="relative z-10 flex md:items-center max-w-7xl p-4 mx-auto md:justify-start items-end justify-end h-full">
+          <div className="text-white w-full h-fit text-start flex flex-col items-start justify-center mt-40 md:mt-20">
+            <AnimatePresence mode="wait">
+              <motion.div key={`content-text-${currentIndex}`} className="w-full">
+                <motion.h1
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  custom={0}
+                  className="main-heading"
+                >
+                  {slides[currentIndex].heading}
+                </motion.h1>
 
-              <motion.p 
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                custom={1}
-                className="tagline"
-              >
-                {slides[currentIndex].tagline}
-              </motion.p>
+                <motion.p
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  custom={1}
+                  className="tagline"
+                >
+                  {slides[currentIndex].tagline}
+                </motion.p>
+
+                <motion.div
+                  variants={textVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  custom={2}
+                >
+                  <CustomeButton title="Get Started" />
+                </motion.div>
+              </motion.div>
 
               <motion.div
-                variants={textVariants}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                custom={2}
-              >
-                <CustomeButton title="Get Started" />
-              </motion.div>
-            </motion.div>
-            
-           
-             
-          </AnimatePresence>
+                key={`content-bg-${currentIndex}`}
+                className="w-full h-full bg-black"
+              />
+            </AnimatePresence>
+          </div>
         </div>
+      ) : (
+        <div className="relative z-10 flex md:items-center flex-col w-full  mx-auto md:justify-start bg-black items-end justify-end h-full">
+          <div
+            className="relative bg-pink-100 h-1/2 w-full bg-cover bg-top"
+            style={{
+              backgroundImage:
+                "url('/images/LandingPage/topbgcompany.png')",
+            }}
+          >
+            <div className="absolute inset-0 bg-cyan-800/80"></div>
+
+            <div className="relative  flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
+            <div className="z-50 space-y-4  rounded-lg">
+            <h1
+  className="text-4xl font-bold"
+  style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
+>
+  I will be Speaking at the Working Capital Forum - Americas 2025
+</h1>
+
+<h1
+  className="text-3xl"
+  style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
+>
+  I am excited to share that I will be attending the Working
+  Capital Forum – Americas on May 1st, 2025, at the iconic Lotte
+  New York Palace in New York City
+</h1>
+
+              </div>
+              <div className="absolute bottom-0 right-0 h-full w-auto">
+                <Image
+                  src="/images/LandingPage/erci.png"
+                  alt="Company Logo"
+                  width={300}
+                  height={300}
+                  className="h-full w-auto object-contain"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            className=" h-1/2 w-full bg-cover bg-gray-200 bg-bottom relative"
+            style={{
+              backgroundImage: "url('/images/LandingPage/bgpattern.png')",
+            }}
+          >
+            <div className="absolute inset-0 bg-black/10"></div>
+            <div className="relative z-10 flex flex-col space-y-4 items-start mb-10 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full">
+              <h1 className="md:text-2xl text-xl font-bold text-black">
+                As the forum makes its U.S. debut after more than a decade in
+                Europe, it will bring together over 100 senior leaders from
+                treasury, procurement, supply chain, and payments. I look
+                forward to joining conversations around payables, receivables,
+                inventory finance, supply chain innovation, and cash
+                forecasting—key levers shaping the future of working capital.
+              </h1>
+
+              <div className="flex gap-4 flex-wrap items-center">
+      <div className="flex items-center gap-2 bg-cyan-600 p-3 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
+        <FaCalendarAlt />
+        <span>Date: May 1, 2025</span>
       </div>
 
-      {/* Navigation Dots */}
-      <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleDotClick(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-white scale-125" : "bg-white/50"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+      <div className="flex items-center gap-2 bg-cyan-600 p-3 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
+        <FaMapMarkerAlt />
+        <span>Location: Lotte New York Palace, NYC</span>
       </div>
+
+      <button className="flex items-center gap-2 bg-cyan-600 p-3 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white">
+        Learn more about event <FaArrowRight />
+      </button>
+    </div>
+              <h1>Stay tuned , I will be share the event details here</h1>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
