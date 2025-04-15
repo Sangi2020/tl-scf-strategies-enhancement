@@ -175,7 +175,7 @@ const Navbar = () => {
           <div className="px-4 pt-5 pb-6 space-y-6">
             {/* Logo & Close Button */}
             <div className="flex items-center justify-between">
-            src={logoUrl?logoUrl:"https://www.scfstrategies.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdn4kcza7g%2Fimage%2Fupload%2Fv1740976694%2Fscf%2Fsettings%2Ficcozjq6k4pmvkebi76f.jpg&w=256&q=75"}
+            src={logoUrl}
             <button
                 onClick={() => setIsOpen(false)}
                 className="bg-white rounded-md p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
