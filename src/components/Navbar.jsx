@@ -175,7 +175,15 @@ const Navbar = () => {
           <div className="px-4 pt-5 pb-6 space-y-6">
             {/* Logo & Close Button */}
             <div className="flex items-center justify-between">
-            src={logoUrl}
+            {logoUrl && (
+                  <Image
+                    src={logoUrl}
+                    alt="Company Logo"
+                    width={80}
+                    height={50}
+                    className="cursor-pointer"
+                  />
+                )}
             <button
                 onClick={() => setIsOpen(false)}
                 className="bg-white rounded-md p-2 text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none"
