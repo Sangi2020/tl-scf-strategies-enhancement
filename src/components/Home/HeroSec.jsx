@@ -229,7 +229,7 @@ function HeroSec() {
             <div className="absolute inset-0 bg-black/80"></div>
 
             <div className="relative  flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
-            <div className="z-50 space-y-4  rounded-lg">
+            <div className="z-50 space-y-4 bg-black/40  rounded-lg">
             <h1
   className="md:text-4xl text-2xl font-bold"
   style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.6)' }}
@@ -267,7 +267,7 @@ function HeroSec() {
           >
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="relative z-10 flex flex-col space-y-4 items-start mb-10 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full">
-              <h1 className="md:text-2xl text-xl  text-black">
+              <h1 className="md:text-2xl text-sm  text-black">
                 As the forum makes its U.S. debut after more than a decade in
                 Europe, it will bring together over 100 senior leaders from
                 treasury, procurement, supply chain, and payments. I look
