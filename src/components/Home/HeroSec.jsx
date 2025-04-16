@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import CustomeButton from "../ui/CustomeButton";
 import Image from "next/image";
 import { FaCalendarAlt, FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+import { BiSolidQuoteLeft, BiSolidQuoteRight } from "react-icons/bi";
 
 const slides = [
   {
@@ -64,7 +65,7 @@ function HeroSec() {
       if (!isTransitioning) {
         startTransition();
       }
-    }, 6000);
+    }, 8000);
 
     return () => clearInterval(interval);
   }, [isTransitioning]);
@@ -186,13 +187,15 @@ function HeroSec() {
       <div className="relative flex flex-col space-y-4 items-start mb-10 md:items-start justify-end md:justify-end max-w-7xl mx-auto p-4 h-full">
         {/* Text Block with Animation */}
         <motion.div
-          className="z-50 space-y-4 bg-black/40 text-white rounded-lg p-4"
+          className="z-50 space-y-4  relative text-white "
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
+          <BiSolidQuoteLeft className="absolute text-cyan-400 text-opacity-30 text-3xl z-10 -left-2 -top-2"/>
+          <BiSolidQuoteRight className="absolute text-cyan-400 text-opacity-30 text-3xl  z-10 -right-2 -bottom-2"/>
           <motion.h1
-            className="md:text-4xl text-2xl font-bold"
+            className="md:text-4xl text-xl z-40  font-bold"
             style={{ textShadow: "2px 2px 6px rgba(0, 0, 0, 0.6)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -238,7 +241,7 @@ function HeroSec() {
       <div className="absolute inset-0 bg-black/10"></div>
 
       <motion.div
-        className="relative z-10 flex flex-col space-y-4 items-start mb-10 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full"
+        className="relative z-10 flex flex-col md:space-y-4 space-y-2 items-start mb-4 md:items-start justify-start md:justify-start max-w-7xl mx-auto p-4 h-full"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
@@ -259,23 +262,30 @@ function HeroSec() {
         </motion.h1>
 
         {/* Event Info Buttons with Icons */}
-        <div className="flex gap-4 flex-wrap items-center">
+        <div className="flex md:gap-4 gap-2 flex-wrap md:text-lg  text-sm items-center">
           <motion.div
-            className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white"
+            className="flex items-center gap-2  rounded-lg text-black hover:bg-cyan-700 transition-all duration-300 "
             whileHover={{ scale: 1.05 }}
           >
-            <FaCalendarAlt />
+            <div className="flex justify-center bg-white  p-2 rounded-full items-center">
+
+            <FaCalendarAlt className="text-black  "/>
+            </div>
             <span>Date: May 1, 2025</span>
           </motion.div>
 
           <motion.div
-            className="flex items-center gap-2 bg-cyan-600 p-2 py-2 rounded-lg hover:bg-cyan-700 transition-all duration-300 text-white"
+            className="flex items-center gap-2  rounded-lg hover:bg-cyan-700 transition-all duration-300 text-black"
             whileHover={{ scale: 1.05 }}
           >
-            <FaMapMarkerAlt />
-            <span>Location: Lotte New York Palace, NYC</span>
+            <div className="flex justify-center bg-white p-2 rounded-full items-center">
+
+            <FaMapMarkerAlt  className="text-black "/>
+            </div>
+            <span >Location: Lotte New York Palace, NYC</span>
           </motion.div>
 
+        </div>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -283,7 +293,6 @@ function HeroSec() {
           >
             <CustomeButton title="Learn more about event" />
           </motion.div>
-        </div>
 
         <motion.h1
           className="text-title"
