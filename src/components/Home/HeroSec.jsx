@@ -202,7 +202,7 @@ function HeroSec() {
           </motion.h1>
 
           <motion.h1
-            className="md:text-3xl text-xl"
+            className="md:text-3xl text-sm"
             style={{ textShadow: "2px 2px 6px rgba(0, 0, 0, 0.6)" }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
