@@ -291,7 +291,7 @@ function HeroSec() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.8 }}
           >
-            <CustomeButton title="Learn more about event" />
+            <CustomeButton newTab link={"https://www.workingcapitalforumamericas.com/"} title="Learn more about event" />
           </motion.div>
 
         <motion.h1
