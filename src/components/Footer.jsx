@@ -206,7 +206,7 @@ const Footer = () => {
                 >
                   <PhoneIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
                   {/* <span className="text-base md:text-lg">+{phone} </span>*/}
-                  <span className="text-base md:text-lg">+1 234 567 8900</span>
+                  <span className="text-base md:text-lg">+1 239 401 5310 </span>
 
                 </a>
 
