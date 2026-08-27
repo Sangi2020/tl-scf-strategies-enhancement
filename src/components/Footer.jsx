@@ -205,7 +205,9 @@ const Footer = () => {
                   className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 transition-colors group"
                 >
                   <PhoneIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  <span className="text-base md:text-lg">{formatPhoneDisplay(phone)}</span>
+                  {/* <span className="text-base md:text-lg">+{phone} </span>*/}
+                  <span className="text-base md:text-lg">+1 234 567 8900</span>
+
                 </a>
 
                 <a
