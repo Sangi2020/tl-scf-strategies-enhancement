@@ -6,6 +6,23 @@ import { Mail, Phone } from 'lucide-react';
 import useCompanyStore from '@/store/useCompanyStore';
 // import useCompanyStore from '@/store/companyStore'; // Adjust the import path if necessary
 
+const formatPhoneDisplay = (value) => {
+  if (!value) return '';
+
+  const digits = value.replace(/\D/g, '');
+  if (!digits) return '';
+
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `+1 ${digits.slice(1, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
+  }
+
+  if (digits.length === 10) {
+    return `+1 ${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+  }
+
+  return `+${digits}`;
+};
+
 const ContactContent = () => {
   const { companymail, phone, fetchCompanyDetails } = useCompanyStore();
 
@@ -49,13 +66,13 @@ const ContactContent = () => {
 
                 {/* Phone Card */}
                 {phone && (
-                  <a href={`tel:${phone}`} className="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-200 hover:scale-105">
+                  <a href={`tel:${phone?.replace(/\D/g, '') || ''}`} className="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-200 hover:scale-105">
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="p-3 bg-blue-100 rounded-full">
                         <Phone className="w-6 h-6 text-blue-600" />
                       </div>
                       <h3 className="font-semibold text-gray-800">Call Us</h3>
-                      <p className="text-2xl text-title">+{phone}</p>
+                      <p className="text-2xl text-title">{formatPhoneDisplay(phone)}</p>
                     </div>
                   </a>
                 )}
