@@ -12,7 +12,7 @@ export default function JsonLd() {
             "logo": "https://www.scfstrategies.com/logo.png",
             "contactPoint": {
               "@type": "ContactPoint",
-              "telephone": "+1-XXX-XXX-XXXX",
+              "telephone": "+1 239 401 5310",
               "contactType": "customer service"
             },
             "sameAs": [
