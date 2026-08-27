@@ -16,6 +16,23 @@ import Image from 'next/image';
 import toast from 'react-hot-toast';
 import useCompanyStore from '@/store/useCompanyStore';
 
+const formatPhoneDisplay = (value) => {
+  if (!value) return '';
+
+  const digits = value.replace(/\D/g, '');
+  if (!digits) return '';
+
+  if (digits.length === 11 && digits.startsWith('1')) {
+    return `+1 ${digits.slice(1, 4)} ${digits.slice(4, 7)} ${digits.slice(7)}`;
+  }
+
+  if (digits.length === 10) {
+    return `+1 ${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+  }
+
+  return `+${digits}`;
+};
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const [email, setEmail] = useState('');
@@ -184,11 +201,13 @@ const Footer = () => {
               <h3 className="text-xl font-semibold text-white">Connect With Us</h3>
               <div className="flex flex-col space-y-4">
                 <a
-                  href={`tel:${phone}`}
+                  href={`tel:${phone?.replace(/\D/g, '') || ''}`}
                   className="flex items-center space-x-3 text-gray-400 hover:text-blue-400 transition-colors group"
                 >
                   <PhoneIcon className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                  <span className="text-base md:text-lg">+{phone} </span>
+                  {/* <span className="text-base md:text-lg">+{phone} </span>*/}
+                  <span className="text-base md:text-lg">+1 234 567 8900</span>
+
                 </a>
 
                 <a
